@@ -1,1 +1,30 @@
 <p>section-soldier works!</p>
+<div class="section-container">
+    <div>
+      <div><h2>Żołnierze</h2></div>
+         <!-- <div><button type="button" class="btn btn-light" routerLink="add">Dodaj</button></div>  -->
+        </div>
+          <table class="table" table-inverse table-hover>
+            <thead>
+              <tr>
+                <th>Stopień</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <!-- <th></th>
+                <th></th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let driver of driverFromDb; let i = index"> -->
+                  <tr *ngFor="let soldier of soldiers">
+                <td>{{soldier.rank}}</td>
+                <td>{{soldier.firstname}}</td>
+                <td>{{soldier.lastname}}</td>
+                <!-- <td><button type="button" class="btn btn-light" (click)="delete(company)">Usuń</button></td>
+                <td><button type="button" class="btn btn-light" (click)="update(company)">Edytuj</button></td> -->
+              </tr>
+            </tbody>
+          </table>
+          <router-outlet></router-outlet>
+        </div>
+<a routerLink="/admin" class="btn btn-link">Back</a>

@@ -1,1 +1,30 @@
 <p>section-company works!</p>
+<div class="section-container">
+    <div>
+      <div><h2>Kompanie</h2></div>
+         <!-- <div><button type="button" class="btn btn-light" routerLink="add">Dodaj</button></div>  -->
+        </div>
+          <table class="table" table-inverse table-hover>
+            <thead>
+              <tr>
+                <th>Numer</th>
+                <th>Rodzaj</th>
+                <th>Dowódca</th>
+                <!-- <th></th>
+                <th></th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let driver of driverFromDb; let i = index"> -->
+                  <tr *ngFor="let company of companies">
+                <td>{{company.number}}</td>
+                <td>{{company.type}}</td>
+                <td>{{company.commander}}</td>
+                <!-- <td><button type="button" class="btn btn-light" (click)="delete(company)">Usuń</button></td>
+                <td><button type="button" class="btn btn-light" (click)="update(company)">Edytuj</button></td> -->
+              </tr>
+            </tbody>
+          </table>
+          <router-outlet></router-outlet>
+        </div>
+<a routerLink="/admin" class="btn btn-link">Back</a>

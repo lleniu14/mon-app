@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Soldier } from 'src/app/_shared/soldier';
 
 @Component({
   selector: 'app-section-soldier',
@@ -8,6 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class SectionSoldierComponent implements OnInit {
 
   constructor() { }
+
+  soldiers: Soldier[] = [
+    {id: 1, rank: "kpr.", firstname: "Michał", lastname: "Wałęga"},
+    {id: 2, rank: "st.kpr.", firstname: "Adam", lastname: "Żyłka"},
+    {id: 3, rank: "szer.", firstname: "Paweł", lastname: "Kubryn"},
+  ]
 
   ngOnInit(): void {
   }

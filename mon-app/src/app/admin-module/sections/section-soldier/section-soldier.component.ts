@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Soldier } from 'src/app/_shared/soldier';
+import { Soldier } from 'src/app/_shared/models/soldier';
 
 @Component({
   selector: 'app-section-soldier',

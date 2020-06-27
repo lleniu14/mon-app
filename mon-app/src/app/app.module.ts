@@ -17,8 +17,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {ButtonModule, PanelMenuModule, SidebarModule} from 'primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { JwtInterceptor } from './_shared/interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './_shared/interceptors/error.interceptor';
+import {SharedModule} from './_shared/modules/shared.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     BrowserModule,
     AppRoutingModule,
     AdminModuleModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

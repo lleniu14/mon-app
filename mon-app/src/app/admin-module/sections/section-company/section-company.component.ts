@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Company } from 'src/app/_shared/company';
+import { Company } from 'src/app/_shared/models/company';
 
 @Component({
   selector: 'app-section-company',

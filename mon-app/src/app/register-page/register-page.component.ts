@@ -45,6 +45,7 @@ export class RegisterPageComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
+        console.log(this.f.firstName.value, this.f.lastName.value, this.f.username.value, this.f.password.value)
         // reset alerts on submit
         this.alertService.clear();
 

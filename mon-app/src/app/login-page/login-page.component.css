@@ -1,0 +1,32 @@
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+mat-card {
+  width: 45vw;
+  min-height: 40vh;
+}
+
+mat-card-content * {
+  width: 100%;
+}
+
+mat-card-actions {
+  text-align: center;
+}
+
+p {
+  color: black;
+  text-align: center;
+}
+
+a {
+  color: blue;
+}

@@ -1,30 +1,59 @@
-<p>section-soldier works!</p>
-<div class="section-container">
-    <div>
-      <div><h2>Żołnierze</h2></div>
-         <!-- <div><button type="button" class="btn btn-light" routerLink="add">Dodaj</button></div>  -->
-        </div>
-          <table class="table" table-inverse table-hover>
-            <thead>
-              <tr>
-                <th>Stopień</th>
-                <th>Imie</th>
-                <th>Nazwisko</th>
-                <!-- <th></th>
-                <th></th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <!-- <tr *ngFor="let driver of driverFromDb; let i = index"> -->
-                  <tr *ngFor="let soldier of soldiers">
-                <td>{{soldier.rank}}</td>
-                <td>{{soldier.firstname}}</td>
-                <td>{{soldier.lastname}}</td>
-                <!-- <td><button type="button" class="btn btn-light" (click)="delete(company)">Usuń</button></td>
-                <td><button type="button" class="btn btn-light" (click)="update(company)">Edytuj</button></td> -->
-              </tr>
-            </tbody>
-          </table>
-          <router-outlet></router-outlet>
-        </div>
-<a routerLink="/admin" class="btn btn-link">Back</a>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Żołnierze
+    </mat-card-title>
+    <!--    <span class="toolbar-spacer"></span>-->
+    <!--    <button type="submit" mat-raised-button color="primary" (click)="openCreateDialog()">-->
+    <!--      <mat-icon aria-label="Add">add</mat-icon>Add customer-->
+    <!--    </button>-->
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="soldiers">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rank">
+        <th mat-header-cell *matHeaderCellDef>Stopień</th>
+        <td mat-cell *matCellDef="let element">{{element.rank}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>Imię</th>
+        <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Nazwisko</th>
+        <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Działania</th>
+        <td mat-cell *matCellDef="let row">
+          <!--          <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="openEditDialog(row)">-->
+          <!--            <mat-icon aria-label="Edit">edit</mat-icon>-->
+          <!--          </button>-->
+          <!--          <button mat-icon-button matTooltip="Click to show Detail" class="iconbutton" color="primary" (click)="getDetail(row)">-->
+          <!--            <mat-icon aria-label="Detail">info</mat-icon>-->
+          <!--          </button>-->
+          <!--          <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="deleteCustomer(row)">-->
+          <!--            <mat-icon aria-label="Delete">delete</mat-icon>-->
+          <!--          </button>-->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

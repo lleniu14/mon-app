@@ -1,30 +1,59 @@
-<p>section-company works!</p>
-<div class="section-container">
-    <div>
-      <div><h2>Kompanie</h2></div>
-         <!-- <div><button type="button" class="btn btn-light" routerLink="add">Dodaj</button></div>  -->
-        </div>
-          <table class="table" table-inverse table-hover>
-            <thead>
-              <tr>
-                <th>Numer</th>
-                <th>Rodzaj</th>
-                <th>Dowódca</th>
-                <!-- <th></th>
-                <th></th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <!-- <tr *ngFor="let driver of driverFromDb; let i = index"> -->
-                  <tr *ngFor="let company of companies">
-                <td>{{company.number}}</td>
-                <td>{{company.type}}</td>
-                <td>{{company.commander}}</td>
-                <!-- <td><button type="button" class="btn btn-light" (click)="delete(company)">Usuń</button></td>
-                <td><button type="button" class="btn btn-light" (click)="update(company)">Edytuj</button></td> -->
-              </tr>
-            </tbody>
-          </table>
-          <router-outlet></router-outlet>
-        </div>
-<a routerLink="/admin" class="btn btn-link">Back</a>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Kompanie
+    </mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <button type="submit" mat-raised-button color="primary" (click)="openCreateDialog()">
+      <mat-icon aria-label="Dodaj">add</mat-icon>Dodaj kompanie
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="companies">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>Numer</th>
+        <td mat-cell *matCellDef="let element">{{element.number}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Typ</th>
+        <td mat-cell *matCellDef="let element">{{element.type}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="commander">
+        <th mat-header-cell *matHeaderCellDef>Dowódca</th>
+        <td mat-cell *matCellDef="let element">{{element.commander}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Działania</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button matTooltip="Kliknij, aby edytować" class="iconbutton" color="primary" (click)="openEditDialog(row)">
+            <mat-icon aria-label="Edycja">edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Kliknij, aby zobaczyć szczegóły" class="iconbutton" color="primary" (click)="getDetail(row)">
+            <mat-icon aria-label="Szczegóły">info</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Kliknij, aby usunąć" class="iconbutton" color="warn" (click)="deleteCompany(row)">
+            <mat-icon aria-label="Usunięcie">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

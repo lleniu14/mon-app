@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Soldier } from 'src/app/_shared/models/soldier';
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-section-soldier',
@@ -8,15 +10,24 @@ import { Soldier } from 'src/app/_shared/models/soldier';
 })
 export class SectionSoldierComponent implements OnInit {
 
+  soldiers = new MatTableDataSource<Soldier>(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'rank', 'firstName', 'lastName', 'actions'];
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor() { }
 
-  soldiers: Soldier[] = [
-    {id: 1, rank: "kpr.", firstname: "Michał", lastname: "Wałęga"},
-    {id: 2, rank: "st.kpr.", firstname: "Adam", lastname: "Żyłka"},
-    {id: 3, rank: "szer.", firstname: "Paweł", lastname: "Kubryn"},
-  ]
-
   ngOnInit(): void {
+    this.soldiers.paginator = this.paginator;
   }
 
+  applyFilter(filterValue: string) {
+    this.soldiers.filter = filterValue.trim().toLowerCase();
+  }
 }
+
+const ELEMENT_DATA: Soldier[] = [
+  {id: 1, rank: "kpr.", firstName: "Michał", lastName: "Wałęga"},
+  {id: 2, rank: "st.kpr.", firstName: "Adam", lastName: "Żyłka"},
+  {id: 3, rank: "szer.", firstName: "Paweł", lastName: "Kubryn"},
+]

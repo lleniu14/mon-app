@@ -1,5 +1,28 @@
-<p>admin-module works!</p>
-<router-outlet></router-outlet>
-<a routerLink="/soldier" class="btn btn-link">Soldier</a>
-<a routerLink="/company" class="btn btn-link">Company</a>
-<a class="nav-item nav-link" (click)="logout()">Logout</a>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" #sidenav position="start">
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/admin', 'soldier']"> Soldiers </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/admin', 'company']"> Companies </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      MonApp
+      <span class="toolbar-spacer"></span>
+      <a [matMenuTriggerFor]="beforeMenu">Name</a>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Edit profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

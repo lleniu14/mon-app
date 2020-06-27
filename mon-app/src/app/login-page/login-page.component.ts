@@ -16,17 +16,17 @@ export class LoginPageComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    error = '';
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService
+        private authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+            this.router.navigate(['admin']);
         }
     }
 
@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin';
     }
 
     // convenience getter for easy access to form fields
@@ -45,9 +45,6 @@ export class LoginPageComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
-        // reset alerts on submit
-        this.alertService.clear();
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
@@ -62,7 +59,7 @@ export class LoginPageComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.error = error;
                     this.loading = false;
                 });
     }

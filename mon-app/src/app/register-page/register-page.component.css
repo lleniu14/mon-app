@@ -1,0 +1,36 @@
+.main-div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  width: 40vw;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+mat-card-actions * {
+  margin: 0 5%;
+}
+
+a {
+  border: none;
+  background-color: red;
+  padding: 7px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}

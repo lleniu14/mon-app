@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
-import { AuthGuard } from './_helpers/auth.guard';
+import { AuthGuard } from './_shared/services/auth.guard';
 
 const routes: Routes = [
 { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -10,7 +10,7 @@ const routes: Routes = [
   loadChildren: () =>
     import('./admin-module/admin-module.module').then(
       m => m.AdminModuleModule
-    ), canActivate: [AuthGuard]
+    )//, canActivate: [AuthGuard]
 },
 { path: 'login', component: LoginPageComponent },
 { path: 'register', component: RegisterPageComponent }
@@ -21,5 +21,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  
+
  }
